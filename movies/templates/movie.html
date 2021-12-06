@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movie Info</title>
+
+    <!-- Bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'css/movie.css' %}">
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/">Movies List <span class="sr-only">(current)</span></a></li>
+        <li><a href="/login">Login</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="cards_container center">
+    <div class="thumbnail">
+        <img src="{{movie.imagen}}" alt="{{movie.titulo}}">
+        <div class="caption text-center">
+            <h3>{{movie.titulo}}</h3>
+              <p>Género: {{ movie.genero }} </p>
+              <p>Director: {{ movie.director }}</p>
+              <p>Fecha estreno: {{ movie.fecha_publicacion }} </p>
+        </div>
+    </div>
+
+    {% if usuario != "AnonymousUser" %}
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ usuario }} add your review </div>
+          <div class="panel-body">
+            <form id="review-form" action="/login/" method="post" role="form" style="display: block;">
+                <div class="form-group">
+                    <input type="text" name="review" id="review" tabindex="1" class="form-control" placeholder="Add review..." value="">
+                </div>
+                <div class="form-group">
+                    <input type="number" name="score" id="score" tabindex="2" class="form-control" placeholder="Add score" step="0.1" min="0" max="5">
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="review-submit" id="review-submit" tabindex="4" class="form-control btn btn-success" value="Add Review">
+                        </div>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+    {% endif %}
+    {% for review in movie.reviews %}
+    <div class="panel panel-default">
+          <div class="panel-heading">{{ review.titulo}} - {{review.user}} - {{review.fecha}}</div>
+          <div class="panel-body">{{ review.comentario }} </div>
+          <div class="panel-footer">{{ review.estrellas }} </div>
+    </div>
+    {% endfor %}
+</div>
+</body>
+</html>

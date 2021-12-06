@@ -1,0 +1,16 @@
+img {
+    max-height: 300px;
+}
+
+.cards_container {
+    width: 50%;
+    max-width: 50%;
+}
+.center {
+  margin: auto;
+  padding: 10px;
+}
+
+.panel-heading {
+    text-transform: capitalize;
+}

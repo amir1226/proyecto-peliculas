@@ -1,0 +1,12 @@
+.row{
+    width: 99%;
+    padding-left: 3%;
+}
+
+.caption {
+    height: 180px;
+}
+img{
+    max-height: 360px;
+    padding-top: 10px;
+}
