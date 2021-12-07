@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/">Movies List <span class="sr-only">(current)</span></a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="/login">Login/Logout</a></li>
       </ul>
     </div>
   </div>
@@ -40,13 +40,17 @@
         </div>
     </div>
 
-    {% if usuario != "AnonymousUser" %}
+    {% if user != "AnonymousUser" %}
         <div class="panel panel-default">
-          <div class="panel-heading">{{ usuario }} add your review </div>
+          <div class="panel-heading">{{ user }} add your review </div>
           <div class="panel-body">
-            <form id="review-form" action="/login/" method="post" role="form" style="display: block;">
+            <form id="review-form" action="{% url 'movie-view-client' movie.id %}" method="post" role="form" style="display: block;">
+                {% csrf_token %}
                 <div class="form-group">
-                    <input type="text" name="review" id="review" tabindex="1" class="form-control" placeholder="Add review..." value="">
+                    <input type="text" name="title" id="title" tabindex="1" class="form-control" placeholder="Add title fo review" value="">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="review" id="review" tabindex="2" class="form-control" placeholder="Add review..." value="">
                 </div>
                 <div class="form-group">
                     <input type="number" name="score" id="score" tabindex="2" class="form-control" placeholder="Add score" step="0.1" min="0" max="5">
@@ -66,7 +70,19 @@
     <div class="panel panel-default">
           <div class="panel-heading">{{ review.titulo}} - {{review.user}} - {{review.fecha}}</div>
           <div class="panel-body">{{ review.comentario }} </div>
-          <div class="panel-footer">{{ review.estrellas }} </div>
+          <div class="panel-footer">
+              <div class="row">
+                  <div class="col-md-2">
+                    {{ review.estrellas }}
+                  </div>
+                  {% if user == review.user %}
+                  <div class="col-md-10" id="ud-buttons">
+                    <a class="btn btn-warning" href="/">Edit</a>
+                    <a class="btn btn-danger" href="/">Delete</a>
+                  </div>
+                  {% endif %}
+              </div>
+          </div>
     </div>
     {% endfor %}
 </div>

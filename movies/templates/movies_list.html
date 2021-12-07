@@ -23,21 +23,21 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Movies List <span class="sr-only">(current)</span></a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a href="/login">Login/Logout</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-{% if usuario != "AnonymousUser" %}
-    <h1 style="padding-left: 3%;"> Hola {{ usuario }} </h1>
+{% if user != "AnonymousUser" %}
+    <h1 style="padding-left: 3%;"> Hi {{ user }} </h1>
 {% endif %}
 
 <div class="row">
     {%for movie in  movies%}
         <div class="col-sm-6 col-md-3">
         <div class="thumbnail">
-            <a href="http://localhost:8000/movies/{{movie.id}}">
+            <a href="/movies/{{movie.id}}">
                 <img src="{{movie.imagen}}" alt="{{movie.titulo}}">
             </a>
             <div class="caption">

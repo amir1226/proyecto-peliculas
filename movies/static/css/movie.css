@@ -17,3 +17,7 @@ img {
 .panel-heading {
     text-transform: capitalize;
 }
+
+#ud-buttons{
+    text-align: right !important;
+}

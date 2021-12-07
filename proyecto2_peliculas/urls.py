@@ -28,8 +28,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/rest-auth/', include('rest_auth.urls')),
     path('api/rest-auth/registration/', include('rest_auth.registration.urls')),
-    path('login/', movies_views.login),
+    path('login/', movies_views.login_view),
     path('', movies_views.movies_list),
-    path('movies/<int:id>/', movies_views.show_movie_page),
+    path('movies/<int:id>/', movies_views.show_movie_page, name='movie-view-client'),
     path('api/', include((router.urls, 'api'))),
+    path('register/', movies_views.register),
+    path('logout/', movies_views.logout)
 ]

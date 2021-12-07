@@ -97,3 +97,24 @@
 	background-color: #1CA347;
 	border-color: #1CA347;
 }
+
+.panel.panel-default {
+    width: 50%;
+    max-width: 50%;
+}
+
+.panel .panel-heading{
+	text-align: center;
+}
+
+.panel-heading span {
+	text-transform: capitalize;
+	font-weight: bold;
+}
+#logout-submit{
+	font-weight: bold;
+}
+.center {
+  margin: auto;
+  padding: 10px;
+}
