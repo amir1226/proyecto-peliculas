@@ -1,14 +1,17 @@
 img {
     max-height: 300px;
-}
 
+}
+.thumbnail > img {
+    margin-top: 20px;
+}
 .cards_container {
     width: 50%;
     max-width: 50%;
+    padding-top: 10px;
 }
 .center {
   margin: auto;
-  padding: 10px;
 }
 
 .panel-heading {
