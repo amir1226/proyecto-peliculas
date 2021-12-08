@@ -28,7 +28,13 @@
     </div>
   </div>
 </nav>
-
+<form id="searcher-form" action="/" method="post" role="form">
+    {% csrf_token %}
+    <div class="input-group" id="movie-searcher-box">
+        <input type="text" class="form-control" name="movie-searcher" id="movie-searcher" placeholder="Search movie..." value="{{search_value}}">
+        <a class="input-group-addon btn" href="#" onclick="document.getElementById('searcher-form').submit();">Search</a>
+    </div>
+</form>
 {% if user != "AnonymousUser" %}
     <h1 style="padding-left: 3%;"> Hi {{ user }} </h1>
 {% endif %}

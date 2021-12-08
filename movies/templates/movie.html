@@ -53,7 +53,7 @@
                     <input type="text" name="review" id="review" tabindex="2" class="form-control" placeholder="Add review..." value="">
                 </div>
                 <div class="form-group">
-                    <input type="number" name="score" id="score" tabindex="2" class="form-control" placeholder="Add score" step="0.1" min="0" max="5">
+                    <input type="number" name="score" id="score" tabindex="3" class="form-control" placeholder="Add score" step="0.1" min="0" max="5">
                 </div>
                 <div class="form-group">
                     <div class="row">
@@ -77,8 +77,8 @@
                   </div>
                   {% if user == review.user %}
                   <div class="col-md-10" id="ud-buttons">
-                    <a class="btn btn-warning" href="/">Edit</a>
-                    <a class="btn btn-danger" href="/">Delete</a>
+                    <a class="btn btn-warning" href="/reviews/{{review.id}}/edit-review/">Edit</a>
+                    <button class="btn btn-danger" onclick="delete_review({{review.id}})">Delete</button>
                   </div>
                   {% endif %}
               </div>
@@ -86,5 +86,12 @@
     </div>
     {% endfor %}
 </div>
+
+<script>
+    function delete_review(id){
+        fetch(`http://127.0.0.1:8000/api/reviews/${id}/`, {method:'DELETE'});
+        window.location.reload();
+    }
+</script>
 </body>
 </html>

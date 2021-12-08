@@ -26,12 +26,18 @@ def login_view(request):
 
 
 def movies_list(request):
-    movies = Movie.objects.all()
+    api_url = f'http://127.0.0.1:8000/api/movies'
+    search=""
+    if request.method == "POST":
+        search = request.POST["movie-searcher"]
+        api_url += f'?search={search}' if search else '/'
 
+    movies = requests.get(api_url)
     return render(request, 'movies_list.html',
                   context={
-                      "movies": movies,
-                      "user": str(request.user)
+                      "movies": movies.json(),
+                      "user": str(request.user),
+                      "search_value": search
                   })
 
 
@@ -87,3 +93,10 @@ def logout(request):
 class MoviesViewSet(ModelViewSet):
     queryset = Movie.objects
     serializer_class = MovieSerializer
+
+    def get_queryset(self):
+        queryset = Movie.objects.all()
+        search = self.request.query_params.get('search')
+        if search is not None:
+            queryset = Movie.objects.filter(titulo__contains=search)
+        return queryset

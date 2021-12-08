@@ -6,7 +6,14 @@
 .caption {
     height: 180px;
 }
+
 img{
     max-height: 360px;
     padding-top: 10px;
+}
+
+#movie-searcher-box {
+    width: 500px;
+    margin: auto;
+    margin-bottom: 30px;
 }

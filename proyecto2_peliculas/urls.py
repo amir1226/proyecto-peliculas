@@ -33,5 +33,6 @@ urlpatterns = [
     path('movies/<int:id>/', movies_views.show_movie_page, name='movie-view-client'),
     path('api/', include((router.urls, 'api'))),
     path('register/', movies_views.register),
-    path('logout/', movies_views.logout)
+    path('logout/', movies_views.logout),
+    path('reviews/<int:id>/edit-review/', reviews_views.edit_review, name='edit-review'),
 ]
